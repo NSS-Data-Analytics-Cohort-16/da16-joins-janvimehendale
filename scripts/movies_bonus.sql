@@ -53,6 +53,14 @@ WHERE film_title ILIKE '% 2';
 --Part 2”, where the original title should be “Harry Potter and the Deathly Hallows: Part 1”. 
 --Modify your query to fix these issues.  
 
+SELECT
+	film_title AS sequel,
+	LEFT(film_title, -2) AS original
+FROM specs
+--WHERE film_title ILIKE '% 2'
+UPDATE film_title
+SET film_title = REPLACE(film_title, '%Part 2', '%Part 1')
+WHERE film_title ILIKE '% Part 2';
 
 
 -----------------------------------------------------------------------------------------------------
