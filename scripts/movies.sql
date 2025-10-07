@@ -58,21 +58,17 @@ ORDER BY no_of_movies DESC;
 
 ---------------------------------------------------------------------------------------------------
 -- 5.	Write a query that returns the five distributors with the highest average movie budget.
---"Fox Searchlight Pictures"
---"American International Pictures"
---"IFC Films"
---"Vestron Pictures"
---"Orion Pictures"
+
 SELECT
 	d.company_name, 
 	ROUND(AVG(r.film_budget),2) AS avg_movie_budget 
 FROM distributors d
-JOIN specs s
+INNER JOIN specs s
 	ON d.distributor_id = s.domestic_distributor_id
-JOIN revenue r
+INNER JOIN revenue r
 	ON r.movie_id = s.movie_id
 GROUP BY d.company_name
-ORDER BY avg_movie_budget 
+ORDER BY avg_movie_budget DESC
 LIMIT 5;
 
 ---------------------------------------------------------------------------------------------------
@@ -86,9 +82,9 @@ SELECT
 	d.company_name,
 	r.imdb_rating
 FROM specs s
-JOIN distributors d
+INNER JOIN distributors d
 	ON d.distributor_id = s.domestic_distributor_id
-JOIN rating r
+INNER JOIN rating r
 	ON r.movie_id = s.movie_id
 WHERE d.headquarters NOT LIKE '%CA%'
 GROUP BY d.company_name, r.imdb_rating, s.film_title
@@ -111,8 +107,3 @@ LEFT JOIN rating r
 GROUP BY duration
 ORDER BY avg_rating DESC;
 ---------------------------------------------------------------------------------------------------
-
-
-
-	
-	
