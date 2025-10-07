@@ -55,14 +55,10 @@ WHERE film_title ILIKE '% 2';
 
 SELECT
 	film_title AS sequel,
-	LEFT(film_title, -2) AS original
+	REPLACE(film_title, '%Part 2', '%Part 1') AS original
 FROM specs
---WHERE film_title ILIKE '% 2'
-UPDATE film_title
-SET film_title = REPLACE(film_title, '%Part 2', '%Part 1')
 WHERE film_title ILIKE '% Part 2';
-
-
+	
 -----------------------------------------------------------------------------------------------------
 -- d.	Now, build off of the query you wrote for the previous part to pull in worldwide revenue 
 --for both the original movie and its sequel. Do sequels tend to make more in revenue? 
